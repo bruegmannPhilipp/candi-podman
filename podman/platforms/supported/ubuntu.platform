@@ -1,0 +1,16 @@
+# Ubuntu (Tested on 22.04 (LTS))
+#
+# This build script assumes that you have several packages already
+# installed via ubuntu's apt-get using the following commands:
+#
+#   sudo apt-get install btrfs-progs crun git golang-go go-md2man iptables \
+#   libassuan-dev libbtrfs-dev libc6-dev libdevmapper-dev libglib2.0-dev \
+#   libgpgme-dev libgpg-error-dev libprotobuf-dev libprotobuf-c-dev \
+#   libseccomp-dev libselinux1-dev libsystemd-dev pkg-config uidmap \
+#   libapparmor-dev containernetworking-plugins
+#
+# If you use a recent version of ubuntu 22.04 (LTS), you might replace
+# containernetworking-plugins by netavark.
+#
+# Then run candi again.
+##

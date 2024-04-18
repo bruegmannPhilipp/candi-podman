@@ -1,0 +1,31 @@
+################################################################################
+## PODMAN                                                                     ##
+################################################################################
+
+VERSION=v4.6.2
+NAME=podman.git
+EXTRACTSTO=podman-${VERSION}
+SOURCE=https://github.com/containers/
+PACKING=git
+BUILDCHAIN=custom
+
+BUILDDIR=${BUILD_PATH}/podman-${VERSION}
+INSTALL_PATH=${INSTALL_PATH}/podman-${VERSION}
+
+package_specific_setup() {
+  cd ..
+  cp -rf ${UNPACK_PATH}/${EXTRACTSTO} .
+  cd ${BUILDDIR}
+
+  make BUILDTAGS="selinux seccomp" PREFIX=${INSTALL_PATH}
+  make install PREFIX=${INSTALL_PATH}
+}
+
+package_specific_conf() {
+  # Generate configuration file
+  CONFIG_FILE=${CONFIGURATION_PATH}/${NAME}
+  rm -f $CONFIG_FILE
+  echo "
+export PATH=${INSTALL_PATH}/bin:\${PATH}
+" >>$CONFIG_FILE
+}
