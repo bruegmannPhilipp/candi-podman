@@ -13,7 +13,7 @@ The following commands download the current stable version of the installer and
 then install the latest deal.II release and common dependencies:
 
 ```bash
-  git clone https://github.com/koecheru/candi-podman.git
+  git clone https://github.com/koecher/candi-podman.git
   cd candi-podman
   ./candi.sh
 ```
