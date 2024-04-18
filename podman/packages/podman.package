@@ -2,6 +2,9 @@
 ## PODMAN                                                                     ##
 ################################################################################
 
+# Note:
+# https://podman.io/docs/installation#building-from-source
+
 VERSION=v4.6.2
 NAME=podman.git
 EXTRACTSTO=podman-${VERSION}
