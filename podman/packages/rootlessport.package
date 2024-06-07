@@ -1,0 +1,40 @@
+################################################################################
+## ROOTLESSPORT                                                               ##
+################################################################################
+
+# Note:
+# https://github.com/rootless-containers/rootlesskit
+
+VERSION=v0.14.10
+NAME=rootlessport.git
+EXTRACTSTO=rootlessport-${VERSION}
+SOURCE=https://github.com/rootless-containers/
+PACKING=git
+BUILDCHAIN=custom
+
+BUILDDIR=${BUILD_PATH}/rootlessport-${VERSION}
+INSTALL_PATH=${INSTALL_PATH}/rootlessport-${VERSION}
+
+package_specific_setup() {
+  # Navigate to the build directory and fetch the repository
+  cd ${BUILD_PATH}
+  git clone --branch ${VERSION} ${SOURCE}rootlesskit.git ${EXTRACTSTO}
+
+  # Move to the build directory
+  cd ${BUILDDIR}
+
+  # Build the rootlessport
+  make rootlessport
+
+  # Install the rootlessport
+  install -Dm755 bin/rootlessport ${INSTALL_PATH}/bin/rootlessport
+}
+
+package_specific_conf() {
+  # Generate configuration file
+  CONFIG_FILE=${CONFIGURATION_PATH}/${NAME}
+  rm -f $CONFIG_FILE
+  echo "
+export PATH=${INSTALL_PATH}/bin:\${PATH}
+" >>$CONFIG_FILE
+}
