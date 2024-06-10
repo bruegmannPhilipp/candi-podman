@@ -1,5 +1,5 @@
 ################################################################################
-## ROOTLESSPORT                                                               ##
+## ROOTLESSKIT                                                               ##
 ################################################################################
 
 # Note:
@@ -23,11 +23,11 @@ package_specific_setup() {
   # Move to the build directory
   cd ${BUILDDIR}
 
-  # Build the rootlessport
-  make rootlessport
+  # Build the rootlesskit
+  make rootlesskit
 
-  # Install the rootlessport
-  install -Dm755 bin/rootlessport ${INSTALL_PATH}/bin/rootlessport
+  # Install the rootlesskit
+  install -Dm755 bin/rootlesskit ${INSTALL_PATH}/bin/rootlesskit
 }
 
 package_specific_conf() {
