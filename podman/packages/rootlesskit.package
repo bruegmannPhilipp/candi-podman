@@ -1,0 +1,32 @@
+################################################################################
+## ROOTLESSKIT                                                                ##
+################################################################################
+
+# Note:
+# https://github.com/rootless-containers/rootlesskit/releases/tag/v2.1.0
+
+VERSION=v2.1.0
+NAME=rootlesskit-x86_64
+EXTRACTSTO=${NAME}-${VERSION}
+SOURCE=https://github.com/rootless-containers/rootlesskit/releases/download/${VERSION}/
+PACKING=.tar.gz
+CHECKSUM=a3c7e35e34126b438b6fe2f2e9a68d11
+BUILDCHAIN=custom
+
+BUILDDIR=${BUILD_PATH}/${EXTRACTSTO}
+INSTALL_PATH=${INSTALL_PATH}/${EXTRACTSTO}/bin
+
+package_specific_setup() {
+  mkdir -p ${INSTALL_PATH}
+  cd ${INSTALL_PATH}
+  cp -rf ${UNPACK_PATH}/${EXTRACTSTO}/* .
+}
+
+package_specific_conf() {
+  # Generate configuration file
+  CONFIG_FILE=${CONFIGURATION_PATH}/${NAME}
+  rm -f $CONFIG_FILE
+  echo "
+export PATH=${INSTALL_PATH}:\${PATH}
+" >>$CONFIG_FILE
+}
