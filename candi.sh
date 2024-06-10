@@ -449,12 +449,13 @@ package_unpack() {
         # Unpack the archive only if it isn't already
 
         # Unpack the archive in accordance with its packing
+        mkdir -p ${EXTRACTSTO}
         if [ ${PACKING} = ".tar.bz2" ] || [ ${PACKING} = ".tbz2" ]; then
-            tar xjf ${FILE_TO_UNPACK}
+            tar xjf ${FILE_TO_UNPACK} --directory ${EXTRACTSTO}
         elif [ ${PACKING} = ".tar.gz" ] || [ ${PACKING} = ".tgz" ]; then
-            tar xzf ${FILE_TO_UNPACK}
+            tar xzf ${FILE_TO_UNPACK} --directory ${EXTRACTSTO}
         elif [ ${PACKING} = ".tar.xz" ]; then
-            tar xJf ${FILE_TO_UNPACK}
+            tar xJf ${FILE_TO_UNPACK} --directory ${EXTRACTSTO}
         elif [ ${PACKING} = ".zip" ]; then
             unzip ${FILE_TO_UNPACK}
         fi
